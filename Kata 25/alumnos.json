@@ -1,0 +1,18 @@
+{"alumnes": [
+	{
+		"nom":"Leidy",
+		"cognom":"Zhang"
+	},
+	{
+		"nom":"Ricardo",
+		"cognom":"Dellazari"
+	},
+	{
+		"nom":"Toni",
+		"cognom":"Muñoz"
+	},
+    {
+		"nom":"Carles",
+		"cognom":"Ruiz"
+	}
+]}
