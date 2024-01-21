@@ -1,11 +1,17 @@
 <?php
-$jsonAlumnos = file_get_contents('alumnos.json');
-$alumnos = json_decode($jsonAlumnos, true);
+$jsonAlumnos = file_get_contents('alumnos.json'); //esto convierte el archivo json en un string
+$alumnos = json_decode($jsonAlumnos, true); //esto decodifica el string y lo convierte en un array asociativo
 var_dump($alumnos);
-
+/*reducimos el array*/
+$alumnosReduccion = array ();
+foreach ($alumnos["alumnes"] as $alumno) {
+    $nombreApellido = $alumno["nom"] . " " . $alumno["cognom"];
+    $alumnosReduccion[] = $nombreApellido;
+}
+var_dump($alumnosReduccion);
 /* rellenamos los arrays con los alumnos*/
-$masterClass = $alumnos;
-$shortCut = $alumnos;
+$masterClass = $alumnosReduccion;
+$shortCut = $alumnosReduccion;
 /*Cremaos función para elegir alumno para la masterclass*/
 function elegirMasterClass(array &$masterClass) {
      $indiceMaster = array_rand($masterClass);
