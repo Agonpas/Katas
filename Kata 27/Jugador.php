@@ -18,6 +18,14 @@ class Jugador{
         }
         return true; // si ninguna de las 2 condiciones se han cumplido podemos efectuar la compra 
     }
+    private function verificarCompras(array $costoCompras): bool { // la función recibe el array $costo (precio de la compra)
+        foreach ($costoCompras as $compra => $cantidadCompra) { //recorremos array para ver el material y la cantidad requerida
+            if (!isset($this->compras[$compra]) || $this->compras[$compra] < $cantidadCompra) { // en el caso de que el material no exista o la cantidad sea menor que la requerida 
+                return false; // devolvemos false
+            }
+        }
+        return true; // si ninguna de las 2 condiciones se han cumplido podemos efectuar la compra 
+    }
     /*Función para descontar los materiales una vez efectuada la compra*/
     private function realizarCompra(array $costo, string $tipoCompra): void { // la función recibe el array $costo (precio de la compra) y el nombre del elemento comprado
         foreach ($costo as $material => $cantidad) { // recorremos el array de costos para extraer el material y la cantidad
@@ -31,13 +39,32 @@ class Jugador{
         }
     }
     /* funcion para comprar camino*/
-    public function comprarCamino() {
-        $costo = ['madera' => 1, 'arcilla' => 1]; // creamos array costo con los materiales y la cantidad necesario para la compra de un camino
+    public function comprarPoblado() {
+        $costo = ['madera' => 1, 'arcilla' => 1, 'cereal' => 1, 'lana' => 1]; // creamos array costo con los materiales y la cantidad necesario para la compra de un poblado
+        if ($this->verificarMateriales($costo)) { // usamos la funciónn para ver si tenemos los materiales necesarios
+            $this->realizarCompra($costo, 'poblado'); // en el caso de cumplir la condición realizamos la compra
+            echo "Se ha realizado la compra correctamente" . PHP_EOL; // comunicamos que la compra se ha realizado
+        } else {
+            echo "No tienes materiales suficentes para un poblado" . PHP_EOL; // informamos en el caso de no tener los materiales para realizar la compra
+        }
+    }
+    public function comprarCarretera() {
+        $costo = ['madera' => 1, 'arcilla' => 1]; // creamos array costo con los materiales y la cantidad necesario para la compra de una carretera
         if ($this->verificarMateriales($costo)) { // usamos la funciónn para ver si tenemos los materiales necesarios
             $this->realizarCompra($costo, 'camino'); // en el caso de cumplir la condición realizamos la compra
             echo "Se ha realizado la compra correctamente" . PHP_EOL; // comunicamos que la compra se ha realizado
         } else {
-            echo "No tienes materiales suficentes para un camino" . PHP_EOL; // informamos en el caso de no tener los materiales para realizar la compra
+            echo "No tienes materiales suficentes para una carretera" . PHP_EOL; // informamos en el caso de no tener los materiales para realizar la compra
+        }
+    }
+    public function comprarCiudad() {
+        $costo = ['cereal' => 2, 'mineral' => 3]; // creamos array costo con los materiales y la cantidad necesario para la compra de una ciudad
+        $costoCompra = ['poblado' => 1]; // creamos array costo de compras y la cantidad necesario para la compra de una ciudad
+        if ($this->verificarMateriales($costo) & $this->verificarCompras($costoCompra)) { // usamos la funciónn para ver si tenemos los materiales necesarios
+            $this->realizarCompra($costo, 'ciudad'); // en el caso de cumplir la condición realizamos la compra
+            echo "Se ha realizado la compra correctamente" . PHP_EOL; // comunicamos que la compra se ha realizado
+        } else {
+            echo "No tienes materiales suficentes para una ciudad" . PHP_EOL; // informamos en el caso de no tener los materiales para realizar la compra
         }
     }
     /*creamos una función para ver los materiales que disponemos*/
