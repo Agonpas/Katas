@@ -23,23 +23,16 @@ function crearArrayUnidad(int $unidad){
         }
     return $unidades;
 }
-function buscarCifra(array $numeros, array $unidades, int $numero, int $unidad) {
+function buscarCifra(array $numeros, array $unidades, int $numero) {
 
-    
-
-    
+    foreach ($unidades as $uni) {
+        $contiene = array_search($uni, $numeros); 
+     if ($contiene !== false){
+         echo "La cifra " . $uni . " está dentro de: " . $numero . PHP_EOL;
+      } else {
+          echo "La cifra $uni no está dentro de $numero" . PHP_EOL;
+     }
+    }   
 }
-foreach ($unidades as $uni) {
-    $contiene = array_search($uni, $numeros); 
- if ($contiene !== false){
-     echo "La cifra " . $uni . " está dentro de: " . $numero . PHP_EOL;
-  } else {
-      echo "La cifra $uni no está dentro de $numero" . PHP_EOL;
- }
-
-}
-
-/*$resultado = buscarCifra($numeros, $unidades, $numero, $unidad);
-echo $resultado;*/
-
+buscarCifra($numeros, $unidades, $numero);
 ?>
