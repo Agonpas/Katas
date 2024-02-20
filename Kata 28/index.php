@@ -1,27 +1,35 @@
 <?php
-$numero = 45678;
-$unidad1 = 4;
-$unidad2 = 3;
-$cifra = $numero;
-$numeros = array();
-while($cifra!= 0){ 
-$numeros[] = $cifra % 10;
-$cifra = intval($cifra/10); // intval convierte el resultado en entero
-}
-var_dump ($numeros);
+echo "Introduce una cifra" . PHP_EOL;
+$numero = fgets(STDIN);
+echo "Introduce una unidad" . PHP_EOL;
+$unidad = fgets(STDIN);
 
-$contiene1 = array_search($unidad1, $numeros); 
-echo $contiene1;
-$contiene2 = array_search($unidad2, $numeros); 
-echo $contiene2;
-if ($contiene1 !== false){
-    echo "La cifra $unidad1 está dentro de: " . $numero;
-} else {
-    echo "La cifra $unidad1 no está dentro de $numero";
+
+function buscarCifra(int $numero, int $unidad) {
+    $numeros = array();
+    $cifra = $numero;
+    while($numero!= 0){ 
+        $numeros[] = $numero % 10;
+        $numero = intval($numero/10); // intval convierte el resultado en entero
+        }
+        $contiene = array_search($unidad, $numeros); 
+        if ($contiene !== false){
+            return "La cifra " . $unidad . " está dentro de: " . $cifra;
+        } else {
+            return "La cifra $unidad no está dentro de $cifra";
+        }
 }
-if ($contiene2 !== false){
+
+$resultado = buscarCifra($numero, $unidad);
+echo $resultado;
+
+
+
+
+
+/*if ($contiene2 !== false){
     echo "La cifra $unidad2 está dentro de: " . $numero;
 } else {
     echo "La cifra $unidad2 no está dentro de $numero";
-}
+}*/
 ?>
