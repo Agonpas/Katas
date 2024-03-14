@@ -15,7 +15,7 @@ if ($suma == 67) {
 }
 if ($suma == 67) {
     for ($z = 1; $z <= $cifint; $z++) {
-        echo "Introduce la cifra " . $i . " entre 1 y 9" . PHP_EOL;
+        echo "Introduce la cifra " . $z . " entre 1 y 9" . PHP_EOL;
         $numero = (int) fgets(STDIN); 
         $suma2 = $suma2 + $numero;
         //echo "actualmente tu suma para el código está en " . $suma . PHP_EOL;
